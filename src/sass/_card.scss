@@ -1,0 +1,237 @@
+.card {
+  height: 60rem;
+  width: 65%;
+  position: relative;
+
+  &--animated {
+    animation: moveInLeft 0.4s ease-in-out 0.75s;
+    animation-fill-mode: backwards;
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    height: 55rem;
+  }
+  @media only screen and (max-width: $bp-small) {
+    height: 60rem;
+  }
+  @media only screen and (max-width: $bp-medium-low) {
+    width: 80%;
+  }
+
+  &__side {
+    height: 60rem;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.5);
+    transition: all 0.8s ease;
+
+    @media only screen and (max-width: $bp-large) {
+      height: 55rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      height: 60rem;
+    }
+
+    &__catched-pokemon {
+      animation: pulsate 1s ease-in-out 1.5s;
+      box-shadow: 0rem 0rem 2rem 1rem rgba(greenyellow, 0.5);
+    }
+    &__catched-pokemon--back {
+      box-shadow: 0rem 0rem 2rem 1rem rgba(greenyellow, 0.5);
+    }
+
+    &--front {
+      background-image: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0.028),
+          50%,
+          $color-white
+        ),
+        url(../img/wallpaper.jpg);
+      background-blend-mode: screen;
+      background-size: cover;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @media only screen and (max-width: $bp-large) {
+        background-position: center;
+      }
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+
+  // FRONT SIDE STYLING
+  &__picture {
+    width: 100%;
+  }
+  &__pokeImg {
+    height: 43rem;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    object-fit: contain;
+    @media only screen and (max-width: $bp-large) {
+      height: 40rem;
+    }
+  }
+  &__pokemon__name {
+    width: 100%;
+    text-align: center;
+
+    color: $color-white;
+    font-weight: 700;
+    font-size: 5rem;
+    letter-spacing: 1rem;
+    text-transform: uppercase;
+    transform: skewY(-5deg);
+    z-index: 1;
+    overflow: hidden;
+
+    @media only screen and (max-width: $bp-large) {
+      font-size: 3rem;
+    }
+  }
+
+  // BACK SIDE STYLING
+
+  &__pokemon-details {
+    height: 100%;
+    width: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: $color-white;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    &-pic-back {
+      position: absolute;
+      top: 16rem;
+      right: 8rem;
+      transform: translate(50%);
+      opacity: 0.2;
+      &--img {
+        @media only screen and (max-width: $bp-medium) {
+          height: 43rem;
+          width: auto;
+        }
+      }
+      @media only screen and (max-width: $bp-small) {
+        top: 20.5rem;
+      }
+    }
+  }
+
+  &__pokemon-atributes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+  }
+
+  &__pokemon-atribute {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    padding: 0.7rem 2rem;
+    border-radius: 5px;
+
+    @media only screen and (max-width: $bp-large) {
+      font-size: 1.5rem;
+    }
+
+    span {
+      font-weight: 700;
+      font-size: 1.9rem;
+      margin-left: 1rem;
+
+      @media only screen and (max-width: $bp-large) {
+        font-size: 1.5rem;
+      }
+    }
+
+    &--height {
+      border: 1px solid $color-grey-dark-2;
+    }
+    &--attack {
+      background-color: $attack;
+    }
+    &--deffense {
+      background-color: $defense;
+    }
+    &--health {
+      background-color: $hp;
+    }
+    &--speed {
+      background-color: $speed;
+    }
+    &--types {
+      padding: 0.2rem 0.7rem;
+      border: 2px dashed $color-black;
+    }
+    &--type {
+      margin-left: 1rem;
+    }
+    &--abilities {
+      background-color: $color-white;
+      border: 2px solid $color-grey-dark-3;
+    }
+  }
+
+  &__pokeheader {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0.028),
+        70%,
+        $color-white
+      ),
+      url(../img/catchtemall-bg-pic.png);
+
+    background-size: cover;
+    background-position: center;
+    z-index: 9;
+  }
+  @media only screen and (max-width: $bp-medium) {
+    &__click-instructions {
+      height: 4.5rem;
+      width: 4.5em;
+
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-image: url(../img/click-instructions.png);
+      background-size: cover;
+      opacity: 0.9;
+    }
+  }
+}

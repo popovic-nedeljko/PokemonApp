@@ -1,0 +1,101 @@
+.preview {
+  &__link {
+    &:link,
+    &:visited {
+      display: flex;
+      align-items: center;
+      padding: 1.1rem 0rem;
+      transition: all ease-in 0.3s;
+      text-decoration: none;
+      width: 100%;
+
+      animation: flipNMoveRight 0.6s ease-in-out 0.75s;
+      animation-fill-mode: backwards;
+
+      //topdown animation for pokelist (altenative animation)
+      // animation: flipNMoveTop 0.6s ease-in-out 0.75s;
+    }
+    &:hover {
+      background-color: $color-grey-light-1;
+      transform: translateY(-0.2rem) scale(1.2);
+
+      @media only screen and (max-width: $bp-small) {
+        background-color: $color-grey-light-2;
+      }
+    }
+    &--active {
+      background-color: $color-grey-light-1;
+      transform: translateY(-0.2rem) scale(1.2);
+
+      @media only screen and (max-width: $bp-small) {
+        background-color: $color-grey-light-2;
+      }
+    }
+  }
+
+  &__fig {
+    flex: 0 0 30%;
+    overflow: hidden;
+    height: 5rem;
+    margin-left: 2.5rem;
+    position: relative;
+    backface-visibility: hidden;
+
+    @media only screen and (max-width: $bp-medium) {
+      margin-left: 3rem;
+    }
+    @media only screen and (max-width: $bp-medium-low) {
+      margin-left: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      flex: 0 0 100%;
+      justify-content: center;
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      transition: all 0.3s;
+    }
+  }
+
+  &__data {
+    width: 100%;
+    @media only screen and (max-width: $bp-small) {
+      width: 0;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: $color-black;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &--your-pokemon {
+      font-size: 1.8rem;
+      letter-spacing: 1.8px;
+    }
+
+    @media only screen and (max-width: $bp-large) {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    @media only screen and (max-width: $bp-medium-low) {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+  }
+}

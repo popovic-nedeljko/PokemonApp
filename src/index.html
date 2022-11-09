@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./img/pokeball-icon.png"
+      type="image/x-icon"
+    />
+
+    <link rel="stylesheet" href="./sass/main.scss" />
+    <script type="module" defer src="./js/controller.js"></script>
+
+    <title>PokemonApp</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <a href="." onclick="window.location.reload(true);">
+          <img
+            src="./img/International_Pokémon_logo.svg.png"
+            alt="Logo"
+            class="header__logo"
+        /></a>
+        <form class="search">
+          <input
+            type="text"
+            class="search__field"
+            placeholder="Search over 1.000 pokemons..."
+          />
+          <button class="btn search__btn">
+            <svg class="search__icon">
+              <use href="./img/icons.svg#icon-search"></use>
+            </svg>
+            <span>Search</span>
+          </button>
+        </form>
+
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <button class="nav__btn nav__btn--yourPokemon">
+                <svg class="nav__icon">
+                  <use href="./img/icons.svg#icon-bookmark"></use>
+                </svg>
+                <span>Your pokemons</span>
+              </button>
+              <div class="yourPokemon">
+                <ul class="yourPokemon__list">
+                  <div class="message">
+                    <div>
+                      <svg>
+                        <use href="./img/icons.svg#icon-smile"></use>
+                      </svg>
+                    </div>
+                    <p>
+                      No yourPokemon yet. Find a nice pokemon and catch it! 👾
+                    </p>
+                  </div>
+
+                  <!-- <li class="preview">
+                    <a class="preview__link" href="#">
+                      <figure class="preview__fig">
+                        <img src="" alt="Test" />
+                      </figure>
+                      <div class="preview__data">
+                        <h4 class="preview__name">
+                        </h4>
+                      </div>
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="search-results">
+        <ul class="results">
+          <!-- 
+          <li class="preview">
+            <a class="preview__link preview__link--active" href="#23456">
+              <figure class="preview__fig">
+                <img src="" alt="Test" />
+              </figure>
+              <div class="preview__data">
+                <h4 class="preview__name">pikachu</h4>
+                <div class="preview__catched-pokemon">
+                  <svg>
+                    <use href="./img/icons.svg#icon-user"></use>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </li>
+           -->
+        </ul>
+
+        <div class="pagination">
+          <!-- <button class="btn--inline pagination__btn--prev">
+            <svg class="search__icon">
+              <use href="./img/icons.svg#icon-arrow-left"></use>
+            </svg>
+            <span>Page priv</span>
+          </button>
+          <button class="btn--inline pagination__btn--next">
+            <span>Page next</span>
+            <svg class="search__icon">
+              <use href="./img/icons.svg#icon-arrow-right"></use>
+            </svg>
+          </button> -->
+        </div>
+
+        <p class="copyright">
+          &copy; Copyright by
+          <a
+            class="ln-link"
+            target="_blank"
+            href="https://www.linkedin.com/in/popovicnedeljko994/"
+            >Nedeljko Popovic</a
+          >. Welcome to PokemonApp. Have a nice time broworsing for your
+          favorite pokemons.
+        </p>
+      </div>
+
+      <div class="pokemon">
+        <div class="message">
+          <div>
+            <svg>
+              <use href="./img/icons.svg#icon-smile"></use>
+            </svg>
+          </div>
+          <p>Start by picking form a list or search for a pokemon. Have fun!</p>
+        </div>
+
+        <!--<div class="spinner">
+          <svg>
+            <use href="./img/icons.svg#icon-loader"></use>
+          </svg>
+        </div> -->
+
+        <!-- <div class="error">
+            <div>
+              <svg>
+                <use href="./img/icons.svg#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>No pokemons found for your query. Please try again!</p>
+          </div> -->
+
+        <!--
+       <div class="card card--animated">
+  <div class="card__side card__side__catched-pokemon card__side--front">
+    <div class="card__picture">
+      <img
+        class="card__pokeImg"
+        src="picture1"
+        alt="img"
+      />
+    </div>
+    <div class="card__pokemon__name">
+      <span class="card__pokemon__name-span">pikachu</span>
+    </div>
+  </div>
+
+  <div class="card__side card__side--back">
+        <div class="card__pokemon-details">
+      <div class="card__pokeheader"></div>
+
+      <div class="card__pokemon-details__picture--back">
+          <figure class="card__pokemon-details-pic-back">
+            <img class="card__pokemon-details-pic-back--img" src="picture" alt="pict" />
+          </figure>
+      </div>
+
+      <div class="card__pokemon-atributes">
+        <li class="card__pokemon-atribute">
+          <p class="card__pokemon-atribute card__pokemon-atribute--height">
+            height:
+            <span>99</span>
+          </p>
+        </li>
+        <li class="card__pokemon-atribute">
+          <p class="card__pokemon-atribute card__pokemon-atribute--attack">
+            attack: <span>99</span>
+          </p>
+        </li>
+        <li class="card__pokemon-atribute">
+          <p class="card__pokemon-atribute card__pokemon-atribute--deffense">
+            deffense: <span>99</span>
+          </p>
+        </li>
+        <li class="card__pokemon-atribute">
+          <p class="card__pokemon-atribute card__pokemon-atribute--health">
+            health: <span>99</span>
+          </p>
+        </li>
+        <li class="card__pokemon-atribute">
+          <p class="card__pokemon-atribute card__pokemon-atribute--speed">
+            speed: <span>99</span>
+          </p>
+        </li>
+
+        <li class="card__pokemon-atribute">
+          <div class="card__pokemon-atribute card__pokemon-atribute--types">
+            type:<span>fire<span>            
+          </div>
+        </li>
+        <li class="card__pokemon-atribute">
+          <p class="card__pokemon-atribute card__pokemon-atribute--abilities">
+            abilities:<span>blast</span>
+          </p>
+        </li>
+      </div>
+    </div>
+
+          <div class="pokemon__catched-pokemon">
+            <svg>
+              <use href="./img/icons.svg#icon-user"></use>
+            </svg>
+          </div>
+          <button class="btn--ellipse">
+            <svg class="">
+              <use href="./img/icons.svg#icon-bookmark"></use>
+            </svg>
+          </button>
+        </div>
+        -->
+      </div>
+    </div>
+
+    <div class="overlay hidden"></div>
+    <div class="add-pokemon-window hidden">
+      <img
+        src="./img/YourPokemon-popup.jpg"
+        alt="Logo"
+        class="add-pokemon-window--message_logo"
+      />
+      <p class="add-pokemon-window--message">
+        Congradulations! You have cought your pokemon! Check your pokemons.
+      </p>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__logo-box">
+        <picture class="footer__logo">
+          <img alt="Full logo" src="./img/pokeball-icon.png" />
+        </picture>
+      </div>
+      <div class="footer__row">
+        <div class="footer__navigation">
+          <ul class="footer__list">
+            <li class="footer__item">
+              <a href="#" class="footer__link">Company</a>
+            </li>
+            <li class="footer__item">
+              <a href="#" class="footer__link">Contact us</a>
+            </li>
+            <li class="footer__item">
+              <a href="#" class="footer__link">Privacy policy</a>
+            </li>
+            <li class="footer__item">
+              <a href="#" class="footer__link">Terms</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__copyright">
+          <p class="footer__copyright-paragraf">
+            &copy; Copyright by
+            <a
+              class="ln-link"
+              target="_blank"
+              href="https://www.linkedin.com/in/popovicnedeljko994/"
+              >Nedeljko Popovic</a
+            >. Welcome to PokemonApp. Have a nice time browsing for your
+            favorite pokemons.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
