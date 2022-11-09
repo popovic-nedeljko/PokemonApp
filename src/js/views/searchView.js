@@ -2,7 +2,10 @@ class SearchView {
   _parentElement = document.querySelector('.search');
 
   getPokeName() {
-    const pokename = this._parentElement.querySelector('.search__field').value;
+    const pokename = this._parentElement
+      .querySelector('.search__field')
+      .value.toLowerCase();
+
     this._clearInput();
 
     return pokename;
