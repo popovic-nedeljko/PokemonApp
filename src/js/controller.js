@@ -25,6 +25,9 @@ const controlPokemons = async function () {
     //loading pokelist
     await model.loadAllPokemons(model.getApiForPage(model.state.page));
 
+    //click to rotate pokecard - for touchscreen mode
+    pokemonView._TouchscreenClick();
+
     //render pokemon
     pokemonView.render(model.state);
 
@@ -58,11 +61,13 @@ const controlSearchResults = async function () {
 
     // render results
     resultsSearchView._generateMarkupPreview(model.state.search.results);
+    searchView._previewAnimationChange();
 
     //render pagination
     paginationView.render(model.state);
   } catch (err) {
     console.error(err);
+    resultsSearchView.renderError();
   }
 };
 
@@ -81,38 +86,52 @@ const controlLoadAllPokemons = async function () {
     paginationView.render(model.state);
   } catch (err) {
     console.log(err);
+    viewAllPokemons.renderError();
   }
 };
 
 const controlPagination = async function (goToPage) {
-  //load new list
-  await model.loadAllPokemons(model.getApiForPage(goToPage));
+  try {
+    //load new list
+    await model.loadAllPokemons(model.getApiForPage(goToPage));
 
-  //render new list results
-  viewAllPokemons.render(model.state.search.pokeListResults);
+    //render new list results
+    viewAllPokemons.render(model.state.search.pokeListResults);
 
-  //render new pagination
-  paginationView.render(model.state);
+    //render new pagination
+    paginationView.render(model.state);
+  } catch (err) {
+    console.error('💥', err);
+  }
 };
 
 const controlCatchPokemon = async function () {
-  //add & remove pokemon
-  if (!model.state.pokemon.catched_pokemon) {
-    model.addYourPokemon(model.state.pokemon);
+  try {
+    //add & remove pokemon
+    if (!model.state.pokemon.catched_pokemon) {
+      model.addYourPokemon(model.state.pokemon);
 
-    //open catch-pokemon winndow
-    yourPokemonView.toggleWindow();
-    //close catch-pokemon window
-    setTimeout(function () {
+      //open catch-pokemon winndow
       yourPokemonView.toggleWindow();
-    }, MODAL_CLOSE_SEC * 1000);
-  } else model.removeYourPokemon(model.state.pokemon.id);
+      //close catch-pokemon window
+      setTimeout(function () {
+        yourPokemonView.toggleWindow();
+      }, MODAL_CLOSE_SEC * 1000);
+    } else model.removeYourPokemon(model.state.pokemon.id);
 
-  //update pokemon view
-  pokemonView.render(model.state);
+    //open modal window
+    yourPokemonView.pokeText(model.state.pokemon);
 
-  //render your pokemon list
-  yourPokemonView.render(model.state.yourPokemons);
+    //update pokemon view
+    pokemonView.render(model.state);
+    yourPokemonView._cardAnimationChange();
+
+    //render your pokemon list
+    yourPokemonView.render(model.state.yourPokemons);
+  } catch (err) {
+    console.error('💥', err);
+    yourPokemonView.renderError(err.message);
+  }
 };
 
 const controlYourPokemon = function () {

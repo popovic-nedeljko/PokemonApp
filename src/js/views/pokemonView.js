@@ -52,6 +52,29 @@ class PokemonView extends View {
     });
   }
 
+  //click to rotate for touchscreens
+  _TouchscreenClick() {
+    if ('ontouchstart' in window || navigator.msMaxTouchPoints > 0) {
+      this._parentElement.addEventListener('click', function (e) {
+        e.preventDefault();
+        const cardFront = e.target.closest('.card__side--front');
+        const cardBack = e.target.closest('.card__side--back');
+
+        if (cardFront) {
+          document.querySelector('.card__side--front').style.transform =
+            'rotateY(-180deg)';
+          document.querySelector('.card__side--back').style.transform =
+            'rotateY(0deg)';
+        }
+        if (cardBack) {
+          document.querySelector('.card__side--front').style.transform =
+            'rotateY(0deg)';
+          document.querySelector('.card__side--back').style.transform =
+            'rotateY(180deg)';
+        }
+      });
+    } else return;
+  }
   _generateMarkup() {
     let curPokemon = this._data.pokemon.id;
 
@@ -73,7 +96,7 @@ class PokemonView extends View {
   </button>
 </div>
 
-<div class="card card--animated">
+<div class="card ">
   <div class="card__side card__side${
     this._data.pokemon.catched_pokemon === true ? '__catched-pokemon' : ''
   } card__side--front">

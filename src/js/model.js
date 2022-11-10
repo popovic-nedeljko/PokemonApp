@@ -64,6 +64,7 @@ export const loadSearchResults = async function (pokeName) {
       name: results.name,
       picture: results.sprites.other['official-artwork'].front_default,
       pictureSub: results.sprites.other.dream_world.front_default,
+      type: results.types.map(type => type.type.name).join(' '),
       url: `${API_URL}${results.id}/`,
     };
 
@@ -71,6 +72,7 @@ export const loadSearchResults = async function (pokeName) {
     state.page = Math.ceil(+state.search.results.id / 10);
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
@@ -100,7 +102,8 @@ export const loadAllPokemons = async function (api) {
       };
     }));
   } catch (err) {
-    err;
+    console.error(err);
+    throw err;
   }
 };
 

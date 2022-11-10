@@ -2,7 +2,7 @@ import View from './view.js';
 
 class ViewAllPokemons extends View {
   _parentElement = document.querySelector('.results');
-  _errorMessage = `No pokemon found. Please load again!`;
+  _errorMessage = `Something went wrong. Please load again!`;
   _message = ``;
 
   _generateMarkup() {

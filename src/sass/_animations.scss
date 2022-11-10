@@ -90,6 +90,15 @@
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes pulsate {
   0% {
     transform: scale(1);
@@ -97,7 +106,7 @@
   }
 
   50% {
-    transform: scale(1.05);
+    transform: scale(1.06);
     box-shadow: 0rem 0rem 2rem 3rem rgba(greenyellow, 0.8);
   }
 

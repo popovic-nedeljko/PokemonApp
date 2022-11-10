@@ -34,6 +34,7 @@
     background-image: none;
     padding: 0;
     background-color: transparent;
+    // padding-right: 1rem;
     span {
       display: none;
     }
@@ -43,6 +44,7 @@
     height: 2.25rem;
     width: 2.25rem;
     fill: currentColor;
+
     @media only screen and (max-width: $bp-small) {
       height: 3rem;
       width: 3rem;
@@ -135,6 +137,11 @@
       color: $color-grey-light-1;
       font-weight: 700;
     }
+    @media only screen and (max-width: $bp-small) {
+      font-size: 2rem;
+      font-weight: 500;
+      padding: 2rem 10rem;
+    }
 
     &::after {
       background-image: linear-gradient(
@@ -180,6 +187,12 @@
     width: 2.5rem;
     margin-top: 0.5rem;
     fill: $color-white;
+
+    @media only screen and (max-width: $bp-small) {
+      height: 4rem;
+      width: 4rem;
+      margin-top: 1rem;
+    }
   }
 }
 
@@ -193,9 +206,10 @@
     width: 8rem;
     fill: $color-primary;
     transition: all 0.3s;
+
     @media only screen and (max-width: $bp-small) {
-      height: 9rem;
-      width: 9rem;
+      height: 12rem;
+      width: 12rem;
       margin: 0 2rem;
     }
   }

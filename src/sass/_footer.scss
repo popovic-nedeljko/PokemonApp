@@ -1,62 +1,22 @@
 .footer {
   display: none;
+
   @media only screen and (max-width: $bp-small) {
     display: block;
     background-color: $color-black;
-
     padding: 7rem 11rem;
     font-size: 1.5rem;
-    // color: $color-grey-light-1;
-    color: $color-white;
+    color: $color-grey-light-1;
 
     &__logo-box {
       text-align: center;
-      margin-bottom: 6rem;
+      margin-bottom: 5rem;
     }
 
     &__logo {
       img {
         height: 16rem;
         width: auto;
-      }
-    }
-
-    &__navigation {
-      // border-top: 1px solid $color-grey-light-1;
-      border-top: 1px solid $color-white;
-      padding-top: 1rem;
-      padding-bottom: 5rem;
-      display: inline-block;
-      text-align: center;
-      width: 100%;
-    }
-
-    &__list {
-      list-style: none;
-    }
-
-    &__item {
-      display: inline-block;
-
-      &:not(:last-child) {
-        margin-right: 1.5rem;
-      }
-    }
-
-    &__link {
-      &:link,
-      &:visited {
-        color: $color-white;
-        text-decoration: underline;
-        text-transform: uppercase;
-        display: inline-block;
-        transition: all 0.2s;
-      }
-
-      &:hover,
-      &:active {
-        box-shadow: 0 1rem 2rem rgba($color-black, 0.4);
-        transform: rotate(3deg) scale(1.2);
       }
     }
 
