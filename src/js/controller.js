@@ -14,28 +14,28 @@ import { async } from 'regenerator-runtime';
 
 const controlPokemons = async function () {
   try {
-    const pokeUrl = window.location.hash.slice(1);
-    if (!pokeUrl) return;
+    const id = +window.location.hash.slice(1);
+    if (!id) return;
 
     //spinner
     pokemonView.renderSpinner();
 
     //loading pokemon
-    await model.loadPokemon(pokeUrl);
+    await model.loadPokemon(id);
     //loading pokelist
     await model.loadAllPokemons(model.getApiForPage(model.state.page));
 
     //click to rotate pokecard - for touchscreen mode
     pokemonView._TouchscreenClick();
 
-    //render pokemon
-    pokemonView.render(model.state);
-
     //update pokelist
     viewAllPokemons.update(model.state.search.pokeListResults);
 
-    //render chached pokemon
+    //update chached pokemon
     yourPokemonView.update(model.state.yourPokemons);
+
+    //render pokemon
+    pokemonView.render(model.state);
 
     //render pagination
     paginationView.render(model.state);

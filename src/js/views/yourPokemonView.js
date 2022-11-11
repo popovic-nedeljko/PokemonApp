@@ -38,14 +38,14 @@ class YourPokemonView extends View {
     return this._data.map(this._generateMarkupPreview).join('');
   }
   _generateMarkupPreview(result) {
-    const id = window.location.hash.slice(1);
+    const id = +window.location.hash.slice(1);
 
     return `
     <li class="preview">
       <a class="preview__link ${
-        result.url === id ? 'preview__link--active' : ''
+        result.id === id ? 'preview__link--active' : ''
       }"
-        href="#${result.url}"
+        href="#${result.id}"
       >
         <figure class="preview__fig">
           <img src="${result.picture}" alt="pict" />

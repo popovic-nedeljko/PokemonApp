@@ -15,10 +15,10 @@ export const state = {
   yourPokemons: [],
 };
 
-export const loadPokemon = async function (pokeUrl) {
+export const loadPokemon = async function (id) {
   try {
     //load pokemon data
-    const data = await getJSON(`${pokeUrl}`);
+    const data = await getJSON(`${API_URL}${id}`);
 
     let pokemon = data;
     //store pokemon data
@@ -35,10 +35,10 @@ export const loadPokemon = async function (pokeUrl) {
       speed: pokemon.stats[5].base_stat,
       type: pokemon.types.map(item => item.type.name),
       ability: pokemon.abilities.map(ab => ab.ability.name).join(' ** '),
-      url: `${pokeUrl}`,
+      url: `${API_URL}${pokemon.id}`,
     };
 
-    if (state.yourPokemons.some(pokemon => pokemon.url === pokeUrl))
+    if (state.yourPokemons.some(pokemon => pokemon.id === id))
       state.pokemon.catched_pokemon = true;
     else state.pokemon.catched_pokemon = false;
 
@@ -146,8 +146,8 @@ const init = function () {
 };
 init();
 
-//-------force clear local storage-------------------
-// clearYourPokemon();
+// -------force clear local storage-------------------
 // const clearYourPokemon = function () {
 //   localStorage.clear('pokemons');
 // };
+// clearYourPokemon();

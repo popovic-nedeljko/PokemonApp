@@ -80,16 +80,16 @@ class PokemonView extends View {
 
     return `
 <div class="pokemon__info-buttons">
-<button onclick="window.location='#${API_URL}${
+<button onclick="window.location='#${curPokemon - 1}';"  data-goto="${
       curPokemon - 1
-    }/';"  data-goto="${curPokemon - 1}" class="btn--next--prev btn--prev">
+    }" class="btn--next--prev btn--prev">
     <svg>
       <use href="${icons}#icon-arrow-left"></use>
     </svg>
   </button>
-  <button onclick="window.location='#${API_URL}${
+  <button onclick="window.location='#${curPokemon + 1}';" data-goto="${
       curPokemon + 1
-    }/';" data-goto="${curPokemon + 1}" class="btn--next--prev btn--next">
+    }" class="btn--next--prev btn--next">
     <svg>
       <use href="${icons}#icon-arrow-right"></use>
     </svg>

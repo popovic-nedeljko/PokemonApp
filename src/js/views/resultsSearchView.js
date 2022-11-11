@@ -11,7 +11,7 @@ class ResultsSearchView extends View {
 
     const markup = `
     <li class="preview">
-      <a class="preview__link preview__link" href="#${result.url}">
+      <a class="preview__link preview__link" href="#${result.id}">
         <figure class="preview__fig">
           <img src="${result.picture}" alt="pict" />
         </figure>
