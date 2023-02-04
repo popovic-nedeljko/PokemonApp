@@ -11,9 +11,20 @@ class PaginationView extends View {
       if (!btn) return;
 
       const goToPage = +btn.dataset.goto;
-      // console.log(goToPage);
+
       handler(goToPage);
     });
+  }
+
+  _returnToList() {
+    let firstPage = 1;
+    const markup = `
+    <button data-goto="${firstPage}" class="btn--inline pagination__btn--search-view">
+        <span>RETURN TO POKEMON LIST</span>
+    </button>`;
+
+    this._clear();
+    this._parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
   _generateMarkup() {
