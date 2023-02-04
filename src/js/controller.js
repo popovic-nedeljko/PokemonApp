@@ -11,7 +11,7 @@ import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
 
 ///////////////////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////
 const controlPokemons = async function () {
   try {
     const id = +window.location.hash.slice(1);
@@ -22,9 +22,17 @@ const controlPokemons = async function () {
 
     //loading pokemon
     await model.loadPokemon(id);
-    //loading pokelist
-    await model.loadAllPokemons(model.getApiForPage(model.state.page));
 
+    //for using arrows (loading new page on pokelist)
+    if (id % 10 === 1 || id % 10 === 0) {
+      await model.loadAllPokemons(model.getApiForPage(model.state.page));
+    }
+
+    // for your pokemons(loading and rendering new page on pokelist )
+    if (model.state.pokemon.catched_pokemon) {
+      await model.loadAllPokemons(model.getApiForPage(model.state.page));
+      viewAllPokemons.render(model.state.search.pokeListResults);
+    }
     //click to rotate pokecard - for touchscreen mode
     pokemonView._TouchscreenClick();
 
@@ -40,8 +48,7 @@ const controlPokemons = async function () {
     //render pagination
     paginationView.render(model.state);
   } catch (err) {
-    viewAllPokemons.render(model.state.search.pokeListResults);
-    // pokemonView.renderError();
+    pokemonView.renderError();
     console.error(err);
   }
 };
@@ -56,18 +63,20 @@ const controlSearchResults = async function () {
     if (!pokeName) return controlLoadAllPokemons();
 
     // load serch results
-    await model.loadSearchResults(pokeName);
-    await model.loadAllPokemons(model.getApiForPage(model.state.page));
+    await model.loadPokemon(pokeName);
 
     // render results
-    resultsSearchView._generateMarkupPreview(model.state.search.results);
-    searchView._previewAnimationChange();
+    resultsSearchView._generateMarkupPreview(model.state.pokemon);
+
+    pokemonView.render(model.state);
+    pokemonView._pokemonViewChangeToSearch();
 
     //render pagination
-    paginationView.render(model.state);
+    paginationView._returnToList();
   } catch (err) {
     console.error(err);
     resultsSearchView.renderError();
+    paginationView._returnToList();
   }
 };
 
@@ -123,8 +132,8 @@ const controlCatchPokemon = async function () {
     yourPokemonView.pokeText(model.state.pokemon);
 
     //update pokemon view
-    pokemonView.render(model.state);
     yourPokemonView._cardAnimationChange();
+    pokemonView.update(model.state);
 
     //render your pokemon list
     yourPokemonView.render(model.state.yourPokemons);
@@ -144,8 +153,10 @@ const controlYourPokemon = function () {
 const init = function () {
   controlLoadAllPokemons();
   yourPokemonView.addHendlerRender(controlYourPokemon);
+
   pokemonView.addHandlerRender(controlPokemons);
-  pokemonView.addHandlerNextPrevPokemon(controlPokemons);
+  pokemonView.addHandlerKeyboardArrows();
+
   pokemonView.addHadnlerAddYourPokemon(controlCatchPokemon);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);

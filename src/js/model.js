@@ -10,9 +10,27 @@ export const state = {
     pokeName: '',
     results: [],
     pokeListResults: [],
-    allPokemon: [],
   },
   yourPokemons: [],
+};
+
+const createPokemonObject = function (data) {
+  const pokemon = data;
+  return {
+    id: pokemon.id,
+    name: pokemon.name,
+    height: pokemon.height,
+    weight: pokemon.weight,
+    picture: pokemon.sprites.other['official-artwork'].front_default,
+    pictureSub: pokemon.sprites.other.dream_world.front_default,
+    Hp: pokemon.stats[0].base_stat,
+    attack: pokemon.stats[1].base_stat,
+    defense: pokemon.stats[2].base_stat,
+    speed: pokemon.stats[5].base_stat,
+    type: pokemon.types.map(item => item.type.name),
+    ability: pokemon.abilities.map(ab => ab.ability.name).join(' ** '),
+    url: `${API_URL}${pokemon.id}`,
+  };
 };
 
 export const loadPokemon = async function (id) {
@@ -20,23 +38,7 @@ export const loadPokemon = async function (id) {
     //load pokemon data
     const data = await getJSON(`${API_URL}${id}`);
 
-    let pokemon = data;
-    //store pokemon data
-    state.pokemon = {
-      id: pokemon.id,
-      name: pokemon.name,
-      height: pokemon.height,
-      weight: pokemon.weight,
-      picture: pokemon.sprites.other['official-artwork'].front_default,
-      pictureSub: pokemon.sprites.other.dream_world.front_default,
-      Hp: pokemon.stats[0].base_stat,
-      attack: pokemon.stats[1].base_stat,
-      defense: pokemon.stats[2].base_stat,
-      speed: pokemon.stats[5].base_stat,
-      type: pokemon.types.map(item => item.type.name),
-      ability: pokemon.abilities.map(ab => ab.ability.name).join(' ** '),
-      url: `${API_URL}${pokemon.id}`,
-    };
+    state.pokemon = createPokemonObject(data);
 
     if (state.yourPokemons.some(pokemon => pokemon.id === id))
       state.pokemon.catched_pokemon = true;
@@ -45,33 +47,6 @@ export const loadPokemon = async function (id) {
     //poge of the current pokemon
     state.page = Math.ceil(+state.pokemon.id / 10);
   } catch (err) {
-    throw err;
-  }
-};
-
-//------------SEARCH DATA-----------------------------------------------
-
-export const loadSearchResults = async function (pokeName) {
-  try {
-    state.search.pokeName = pokeName;
-    //load search data
-    const data = await getJSON(`${API_URL}${pokeName}/`);
-
-    let results = data;
-    //store search data
-    state.search.results = {
-      id: results.id,
-      name: results.name,
-      picture: results.sprites.other['official-artwork'].front_default,
-      pictureSub: results.sprites.other.dream_world.front_default,
-      type: results.types.map(type => type.type.name).join(' '),
-      url: `${API_URL}${results.id}/`,
-    };
-
-    //page of the searched pokemon
-    state.page = Math.ceil(+state.search.results.id / 10);
-  } catch (err) {
-    console.error(err);
     throw err;
   }
 };
