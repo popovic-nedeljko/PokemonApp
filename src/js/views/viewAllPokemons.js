@@ -1,4 +1,5 @@
 import View from './view.js';
+import searchView from './searchView.js';
 
 class ViewAllPokemons extends View {
   _parentElement = document.querySelector('.results');
@@ -16,7 +17,7 @@ class ViewAllPokemons extends View {
     <li class="preview">
       <a class="preview__link ${
         result.id === id ? 'preview__link--active' : ''
-      } " 
+      }  " 
         href="#${result.id}"
       >
         <figure class="preview__fig">
